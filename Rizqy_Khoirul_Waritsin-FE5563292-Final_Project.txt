@@ -1,0 +1,60 @@
+// Make empty array
+READ and WRITE "todo" with array;
+
+// Define function to display main menu
+FUNCTION mainMenu()
+  PRINT "To Do List Application";
+  PRINT "1. Add item or task";
+  PRINT "2. Remove item or task";
+  PRINT "3. View list of item or task";
+  PRINT "4. Exit";
+ENDFUNCTION
+
+// Define function to add item or task
+FUNCTION addTask()
+  READ and WRITE "itask" with string;
+
+  // Add task or item in application
+  STORE "itask" with "Enter your task or item" ; 
+  APPEND "todo" with "itask"; 
+  PRINT "Your task or item has been added";
+ENDFUNCTION
+
+FUNCTION viewList()
+  READ and WRITE "i" with number;
+  STORE "i" with "1";
+
+  While i <= array.length(todo):
+    PRINT (i, "-", todo[i]);
+  END While
+ENDFUNCTION 
+
+FUNCTION removeTask()
+  viewList();
+  READ and WRITE "numItem" with number;
+
+  // Remove task or item in application
+  STORE "numItem" with "The number of the item you want to delete" - 1;
+  REMOVE INDEX in "todo" with "numItem";
+  PRINT "Your task or item has been removed";
+ENDFUNCTION
+
+
+
+mainMenu();
+
+While True:
+  READ and WRITE "pilih" with number;
+  STORE "pilih" with "The number of the item you choice";
+
+  IF "pilih" equal "1"
+ 	addTask();
+  ELSE IF "pilih" equal "2"
+	removeTask();
+  ELSE IF "pilih" equal "3"
+	viewList();
+  ELSE IF "pilih" equal "4"
+	break;
+  ELSE
+	PRINT "There's no option for your choice, please try again";
+End While
